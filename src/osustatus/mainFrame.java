@@ -20,6 +20,7 @@ public class mainFrame extends JFrame
         super("osu!Status");
         setSize(800,600);
         setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
         getContentPane().setBackground(Color.darkGray);
         
         ImageIcon img = new ImageIcon(getClass().getResource("/resources/icon.png"));

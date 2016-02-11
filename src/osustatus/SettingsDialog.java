@@ -21,6 +21,7 @@ public class SettingsDialog extends JDialog implements ActionListener
         super(frame, "Settings");
         setModal(true);
         setResizable(false);
+        setPreferredSize(new Dimension(400,120));
         
         container = new JPanel();
         setLayout(new BorderLayout());
@@ -31,7 +32,7 @@ public class SettingsDialog extends JDialog implements ActionListener
         container.add(n, BorderLayout.NORTH);
         
         nameField = new JTextField();
-        nameField.setColumns(20);
+        nameField.setColumns(27);
         nameField.setText(Settings.getUser());
         container.add(nameField, BorderLayout.NORTH);
         
@@ -40,17 +41,18 @@ public class SettingsDialog extends JDialog implements ActionListener
         container.add(k, BorderLayout.CENTER);
         
         keyField = new JTextField();
-        keyField.setColumns(40);
+        keyField.setColumns(27);
         keyField.setText(Settings.getKey());
         container.add(keyField, BorderLayout.CENTER);
         
         submit = new JButton();
-        submit.setText("Apply");
+        submit.setText("OK");
         container.add(submit, BorderLayout.SOUTH);
         
         submit.addActionListener(this);
         
         pack();
+        setLocationRelativeTo(frame);
     }
     
     @Override
