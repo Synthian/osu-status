@@ -8,12 +8,7 @@ public class OsuStatus
 {
     public static void main(String[] args) 
     {
-        mainFrame mainframe = new mainFrame();
-        mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainframe.setVisible(true);
-        
         //Affirm the the config file exists
-        
         File file = new File("config.properties");
         if(file.exists())
         {
@@ -74,6 +69,10 @@ public class OsuStatus
 		}
             }   
         }
+        
+        mainFrame mainframe = new mainFrame();
+        mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainframe.setVisible(true);
         
         //Pop open the Settings if they are not set
         

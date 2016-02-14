@@ -11,6 +11,8 @@ public class recentPlay
     private String date;
     private String rank;
     private String mods;
+    private String beatmap_name;
+    private BigDecimal stars;
     private BigDecimal cnt300, cnt100, cnt50, cnt0, cntkatu, cntgeki;
     
     public recentPlay (JSONArray data) {
@@ -75,6 +77,18 @@ public class recentPlay
                 sb.append(" ");
             }
             mods = sb.toString();
+            
+            JSONObject map = API.getBeatmap(Settings.getKey(), beatmap_id);
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(map.get("artist").toString());
+            sb2.append(" - ");
+            sb2.append(map.get("title").toString());
+            sb2.append(" [");
+            sb2.append(map.get("version").toString());
+            sb2.append("] ");
+            beatmap_name = sb2.toString();
+            
+            stars = new BigDecimal(map.get("difficultyrating").toString());
             
             cnt300 = new BigDecimal(obj.get("count300").toString());
             cnt100 = new BigDecimal(obj.get("count100").toString());
@@ -163,6 +177,16 @@ public class recentPlay
     public String getID()
     {
         return beatmap_id;
+    }
+    
+    public String getBeatmapName()
+    {
+        return beatmap_name;
+    }
+    
+    public BigDecimal getStars()
+    {
+        return stars;
     }
     
     public boolean dateEquals(recentPlay p)

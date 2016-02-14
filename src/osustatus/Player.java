@@ -27,12 +27,35 @@ public final class Player
     
     private static BigDecimal fetchPP (JSONObject u)
     {
-        return new BigDecimal(u.get("pp_raw").toString());
+        if(u.get("pp_raw").equals(null))
+        {
+            return new BigDecimal("0"); 
+        }
+        else
+            return new BigDecimal(u.get("pp_raw").toString());
     }
     
     private static BigDecimal fetchAcc (JSONObject u)
     {
-        return new BigDecimal(u.get("accuracy").toString());
+        if(u.get("accuracy").equals(null))
+                return new BigDecimal("0");
+        else
+            return new BigDecimal(u.get("accuracy").toString());
+    }
+    
+    public static BigDecimal getStars()
+    {
+        return lastplay.getStars();
+    }
+    
+    public static String getRank()
+    {
+        return lastplay.getRank();
+    }
+    
+    public static String getBeatmapName()
+    {
+        return lastplay.getBeatmapName() + " " + lastplay.getMods();
     }
     
     public static BigDecimal getPP ()
@@ -89,6 +112,7 @@ public final class Player
         return difference.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
     
+    //old
     public static String getRecentMapString ()
     {
         JSONObject map = API.getBeatmap(Settings.getKey(), lastplayid);
@@ -122,7 +146,7 @@ public final class Player
         JSONArray data = API.getUserTop100(Settings.getKey(), Settings.getUser(), mode);
         double pp = 0;
         
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < data.length(); i++)
         {
             JSONObject score = data.getJSONObject(i);
             String mapid = score.get("beatmap_id").toString();
