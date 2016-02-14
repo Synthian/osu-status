@@ -382,8 +382,9 @@ public class mainFrame extends JFrame
         rawpp.setFont(ubufont.deriveFont(Font.BOLD, 32.0f));
         rawpp.setBorder(BorderFactory.createEmptyBorder(0,0,0,8));
         rawpp.setForeground(Color.WHITE);
+        int comparepp = deltapp.compareTo(BigDecimal.ZERO); 
         double toppp = Player.userBeatmapPP();
-        if(toppp != 0)
+        if(toppp != 0 && comparepp != 0)
             rawpp.setText(String.format("%.2f pp", toppp));
         
         gbc.anchor = GridBagConstraints.WEST;
@@ -399,10 +400,9 @@ public class mainFrame extends JFrame
         JPanel gains = new JPanel();
         gains.setBackground(Color.BLACK);
         gains.setLayout(new GridLayout(2,1));
-        
             JLabel ppgain = new JLabel();
             ppgain.setFont(ubufont.deriveFont(Font.BOLD, 16.0f));
-            int comparepp = deltapp.compareTo(BigDecimal.ZERO); 
+            
             if (comparepp == 1)
             {
                 ppgain.setForeground(Color.GREEN);
